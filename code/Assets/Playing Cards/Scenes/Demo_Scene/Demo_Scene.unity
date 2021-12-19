@@ -3540,17 +3540,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: Red_AllCards_00
       objectReference: {fileID: 0}
+    - target: {fileID: 3386844912134070811, guid: 66cb745a60dfb4f4081512392f0362a5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.012
+      objectReference: {fileID: 0}
+    - target: {fileID: 3386844912134070811, guid: 66cb745a60dfb4f4081512392f0362a5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.068
+      objectReference: {fileID: 0}
     - target: {fileID: 6952692003548654802, guid: 66cb745a60dfb4f4081512392f0362a5, type: 3}
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6952692003548654802, guid: 66cb745a60dfb4f4081512392f0362a5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.046000183
+      value: 0.166
       objectReference: {fileID: 0}
     - target: {fileID: 6952692003548654802, guid: 66cb745a60dfb4f4081512392f0362a5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.112
       objectReference: {fileID: 0}
     - target: {fileID: 6952692003548654802, guid: 66cb745a60dfb4f4081512392f0362a5, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3931,6 +3939,27 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5708573621294707099, guid: cbb2006a6ea0dac479a09747aaa29f20, type: 3}
   m_PrefabInstance: {fileID: 2075564874}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2075564876 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8747033562730546056, guid: cbb2006a6ea0dac479a09747aaa29f20, type: 3}
+  m_PrefabInstance: {fileID: 2075564874}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2075564877
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2075564876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f35f3ca6770f736449e7df4f98dd6182, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  faces:
+  - {fileID: 0}
+  cardBack: {fileID: 0}
+  cardIndex: 0
 --- !u!1001 &2105716936
 PrefabInstance:
   m_ObjectHideFlags: 0

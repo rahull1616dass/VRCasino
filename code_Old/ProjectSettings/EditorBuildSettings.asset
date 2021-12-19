@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/vr-casino/Scenes/CassinoLobby.unity
+    guid: 50e03c74a654ca940931ff06351a052f
+  m_configObjects:
+    Unity.XR.Oculus.Settings: {fileID: 11400000, guid: bc2a7aa3f2a690b4db61956f51ed09dd, type: 2}
+    Unity.XR.PXR.Settings: {fileID: 11400000, guid: f382b3de476dda14591cef61effc9d98, type: 2}
+    Unity.XR.WindowsMR.Settings: {fileID: 11400000, guid: cb990effba19ceb4393527df7206c435, type: 2}
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 8de6541adb5794f4b88bdf50d35c12d5, type: 2}
