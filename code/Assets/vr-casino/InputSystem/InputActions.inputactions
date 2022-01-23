@@ -1,0 +1,142 @@
+{
+    "name": "InputActions",
+    "maps": [
+        {
+            "name": "DesktopNonVR",
+            "id": "39f0a131-fa2e-4aa5-adc1-b7da887c821e",
+            "actions": [
+                {
+                    "name": "Rotate",
+                    "type": "Value",
+                    "id": "e185f9ea-3573-4463-822c-2cda4b7a26ec",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Translate",
+                    "type": "Value",
+                    "id": "17d20c31-1bff-44be-b783-c53a70e5b7b1",
+                    "expectedControlType": "Vector3",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "One Modifier",
+                    "id": "57e83fa8-5797-4e1a-9124-7f98f4de9e96",
+                    "path": "OneModifier",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Rotate",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "modifier",
+                    "id": "4795349d-64ba-4dcb-8413-6c346a8101af",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Rotate",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "binding",
+                    "id": "bc713dab-a3aa-4a8b-853a-c5bfda35fcfb",
+                    "path": "<Mouse>/delta",
+                    "interactions": "",
+                    "processors": "InvertVector2(invertX=false)",
+                    "groups": "",
+                    "action": "Rotate",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "3D Vector",
+                    "id": "8a94f99b-d7c4-4911-8b22-83865e7264ac",
+                    "path": "3DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Translate",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "80b8e46c-64de-4993-9a3a-7d5fde9f7f01",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Translate",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "7335955a-0282-4c52-8e9f-e13f1f913fa0",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Translate",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "40416613-719a-43dc-87e9-9e4939925a0a",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Translate",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "5ff2648d-c436-4c02-ad19-361e73a4d771",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Translate",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "forward",
+                    "id": "e6aa0b22-34b9-4af6-be2c-90b3ad37d411",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Translate",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "backward",
+                    "id": "f2b4c392-6e2b-4d60-b766-d856e048622b",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Translate",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
