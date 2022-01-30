@@ -4,10 +4,10 @@
 public class Card : ScriptableObject
 {
     [SerializeField]
-    private Sprite _sprite;
-    public Sprite Sprite {
+    private Material _material;
+    public Material Material {
         get {
-            return _sprite;
+            return _material;
         }
     }
 

@@ -4,21 +4,21 @@ using UnityEngine;
 [RequireComponent(typeof(SpriteRenderer))]
 public class CardDisplay : MonoBehaviour
 {
-    private SpriteRenderer _spriteRenderer;
-    private Sprite _backCardSprite;
+    private Material _material;
+    //private Sprite _backCardSprite;
 
     public Card Card { get; private set; }
 
     private void Awake()
     {
-        _spriteRenderer = GetComponent<SpriteRenderer>();
+        _material = GetComponent<Material>();
 
-        _backCardSprite = _spriteRenderer.sprite;
+        //_backCardSprite = _material.sprite;
     }
 
     public void Reset()
     {
-        _spriteRenderer.sprite = _backCardSprite;
+        //_material.sprite = _backCardSprite;
 
         Card = null;
     }
@@ -34,8 +34,8 @@ public class CardDisplay : MonoBehaviour
             throw new Exception("The card was not defined!");
         }
 
-        if (_spriteRenderer.sprite.GetInstanceID() == _backCardSprite.GetInstanceID()) {
-            _spriteRenderer.sprite = Card.Sprite;
+        if (/*_material.sprite.GetInstanceID() == _backCardSprite.GetInstanceID()*/true) {
+            _material = Card.Material;
         }
     }
 }
