@@ -995,8 +995,8 @@ namespace uniwue.hci.vilearn
 
         void Update()
         {
-            if(!PlayerStateScriptable.Instance.PlayerStateInitialized())
-                return;
+            //if(!PlayerStateScriptable.Instance.PlayerStateInitialized())
+              //  return;
 
             UpdateMapping();
             UpdateXRDevice();
