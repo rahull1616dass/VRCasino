@@ -8,8 +8,8 @@ public class GameManager : MonoBehaviour
     private GameAction _currentAction;
     private Coroutine _computerTurnCoroutine;
 
-    [SerializeField]
-    private AudioManager _audioManager;
+    /*[SerializeField]
+    private AudioManager _audioManager;*/
     [SerializeField]
     private UIManager _uiManager;
     [SerializeField]
@@ -79,18 +79,17 @@ public class GameManager : MonoBehaviour
         _uiManager.OnNewGameButtonEvent += OnNewGameEvent;
         _uiManager.OnExitButtonEvent += OnExitEvent;
 
-        OnGameStateChanged += _uiManager.NotificationHandler.OnUpdateNotification;
         OnGameActionChanged += _uiManager.OnUpdateGameplayButtons;
     }
 
     private void OnButtonEvent()
     {
-        _audioManager.PlayButtonClip();
+        //_audioManager.PlayButtonClip();
     }
 
     private void OnCardEvent()
     {
-        _audioManager.PlayCardClip();
+        //_audioManager.PlayCardClip();
     }
 
     private void OnDealEvent()

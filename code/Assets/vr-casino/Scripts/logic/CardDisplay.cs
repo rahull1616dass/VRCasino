@@ -19,7 +19,7 @@ public class CardDisplay : MonoBehaviour
     private void Awake()
     {
         _material = GetComponent<Material>();
-        
+        _thisObjectTransform = transform;
         FlipTheCard();
         //_backCardSprite = _material.sprite;
     }

@@ -5,7 +5,7 @@ using TMPro;
 public class UIManager : MonoBehaviour
 {
     private Image _audioImage;
-    private Sprite _audioOnSprite;
+    //private Sprite _audioOnSprite;
 
     [SerializeField]
     private TextMeshProUGUI _scoreText;
@@ -21,10 +21,8 @@ public class UIManager : MonoBehaviour
     private Button _exitButton;
     [SerializeField]
     private Button _audioButton;
-    [SerializeField]
-    private Sprite _audioOffSprite;
-    [SerializeField]
-    private NotificationHandler _notificationHandler;
+    /*[SerializeField]
+    private Sprite _audioOffSprite;*/
 
     public delegate void ButtonEvent();
     public event ButtonEvent OnDealButtonEvent = delegate { };
@@ -36,12 +34,6 @@ public class UIManager : MonoBehaviour
     public delegate bool ButtonEventWithBoolean();
     public event ButtonEventWithBoolean OnAudioButtonEvent = delegate() { return false; };
 
-    public NotificationHandler NotificationHandler {
-        get {
-            return _notificationHandler;
-        }
-    }
-
     private void Start()
     {
         _dealButton.onClick.AddListener(() => OnDealButtonEvent());
@@ -52,9 +44,8 @@ public class UIManager : MonoBehaviour
 
         _audioButton.onClick.AddListener(OnAudioButtonClick);
         _audioImage = _audioButton.GetComponent<Image>();
-        _audioOnSprite = _audioImage.sprite;
+        //_audioOnSprite = _audioImage.sprite;
 
-        _notificationHandler.Setup();
         _scoreText =  gameObject.GetComponent<TextMeshProUGUI>();
     }
 
@@ -75,11 +66,11 @@ public class UIManager : MonoBehaviour
     {
         bool _isAudioDisabled = OnAudioButtonEvent();
 
-        if (_isAudioDisabled) {
+        /*if (_isAudioDisabled) {
             _audioImage.sprite = _audioOffSprite;
         }
         else {
             _audioImage.sprite = _audioOnSprite;
-        }
+        }*/
     }
 }
