@@ -94,6 +94,8 @@ public class GameManager : MonoBehaviour
 
     private void OnDealEvent()
     {
+
+        Debug.Log("Call");
         _dealer.Deal(_human);
         _dealer.Deal(_computer, false);
 

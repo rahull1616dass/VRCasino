@@ -137,7 +137,7 @@ GameObject:
   - component: {fileID: 207108807}
   m_Layer: 0
   m_Name: DesktopCam
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -991,7 +991,6 @@ GameObject:
   - component: {fileID: 866537499}
   - component: {fileID: 866537498}
   - component: {fileID: 866537497}
-  - component: {fileID: 866537496}
   - component: {fileID: 866537495}
   m_Layer: 0
   m_Name: VRCamera
@@ -1018,18 +1017,6 @@ MonoBehaviour:
   m_TrackingType: 0
   m_UpdateType: 0
   m_UseRelativeTransform: 0
---- !u!114 &866537496
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 866537494}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!81 &866537497
 AudioListener:
   m_ObjectHideFlags: 0
@@ -2371,7 +2358,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1571501282}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2109218029}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: DealButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1571501282
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3313,8 +3312,6 @@ MonoBehaviour:
   _newGameButton: {fileID: 954949444}
   _exitButton: {fileID: 1658142339}
   _audioButton: {fileID: 899564825}
-  _notificationHandler:
-    _notificationText: {fileID: 0}
 --- !u!1 &398562340460818575
 GameObject:
   m_ObjectHideFlags: 0

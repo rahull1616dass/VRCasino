@@ -46,7 +46,7 @@ public class UIManager : MonoBehaviour
         _audioImage = _audioButton.GetComponent<Image>();
         //_audioOnSprite = _audioImage.sprite;
 
-        _scoreText =  gameObject.GetComponent<TextMeshProUGUI>();
+        //_scoreText =  gameObject.GetComponent<TextMeshProUGUI>();
     }
 
     public void OnUpdateGameplayButtons(GameAction action)
@@ -72,5 +72,10 @@ public class UIManager : MonoBehaviour
         else {
             _audioImage.sprite = _audioOnSprite;
         }*/
+    }
+
+    public void DealButton()
+    {
+        Debug.Log("Caalling");
     }
 }
