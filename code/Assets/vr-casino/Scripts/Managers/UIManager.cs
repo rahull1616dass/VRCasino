@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class UIManager : MonoBehaviour
 {
@@ -7,7 +8,7 @@ public class UIManager : MonoBehaviour
     private Sprite _audioOnSprite;
 
     [SerializeField]
-    private Text _scoreText;
+    private TextMeshProUGUI _scoreText;
     [SerializeField]
     private Button _dealButton;
     [SerializeField]
@@ -54,6 +55,7 @@ public class UIManager : MonoBehaviour
         _audioOnSprite = _audioImage.sprite;
 
         _notificationHandler.Setup();
+        _scoreText =  gameObject.GetComponent<TextMeshProUGUI>();
     }
 
     public void OnUpdateGameplayButtons(GameAction action)
