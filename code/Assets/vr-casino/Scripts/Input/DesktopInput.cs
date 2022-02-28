@@ -12,10 +12,21 @@ public class DesktopInput : MonoBehaviour
     private float m_azimuth = 0;
     private float m_inclination = 0;
 
+    private Vector2 _startCamRotation;
+
+
+    private void Start()
+    {
+        _startCamRotation.Set(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y);
+    }
     private void Update()
     {
         Rotate();
         Translate();
+
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        Debug.DrawRay(ray.origin, ray.direction*100f, Color.red);
     }
 
     private void Translate()
@@ -34,8 +45,9 @@ public class DesktopInput : MonoBehaviour
         if (m_Rotation.action == null)
             return;
         var t_delta = m_Rotation.action.ReadValue<Vector2>();
-        m_azimuth = (m_azimuth + t_delta.x * m_RotationSpeed * Time.deltaTime) % 360;
-        m_inclination = Mathf.Clamp(m_inclination + t_delta.y * m_RotationSpeed * Time.deltaTime, -90, 90);
+        m_azimuth = (_startCamRotation.y + m_azimuth + t_delta.x * m_RotationSpeed * Time.deltaTime) % 360;
+        m_inclination = Mathf.Clamp(_startCamRotation.x + m_inclination + t_delta.y * m_RotationSpeed * Time.deltaTime, -90, 90);
         transform.rotation = Quaternion.Euler(m_inclination, m_azimuth, 0);
+        _startCamRotation = new Vector2(0, 0);
     }
 }

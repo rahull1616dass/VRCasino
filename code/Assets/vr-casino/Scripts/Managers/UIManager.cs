@@ -23,7 +23,7 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private Button _audioButton;
     [SerializeField]
-    private InputActionReference _debugButtonDeal, _debugButtonNewGame;
+    private InputActionReference _debugButtonDeal, _debugButtonNewGame, _debugButtonHit;
     /*[SerializeField]
     private Sprite _audioOffSprite;*/
 
@@ -49,6 +49,7 @@ public class UIManager : MonoBehaviour
         _audioImage = _audioButton.GetComponent<Image>();
         _debugButtonDeal.action.performed += DealButton;
         _debugButtonNewGame.action.performed += NewGameButton;
+        _debugButtonHit.action.performed += HitGameButton;
         //_audioOnSprite = _audioImage.sprite;
 
         //_scoreText =  gameObject.GetComponent<TextMeshProUGUI>();
@@ -90,4 +91,16 @@ public class UIManager : MonoBehaviour
         Debug.Log("NewGame");
         OnNewGameButtonEvent();
     }
+
+    public void HitGameButton(InputAction.CallbackContext context)
+    {
+        Debug.Log("Hit");
+        OnHitButtonEvent();
+    }
+
+    public void Test()
+    {
+        Debug.Log("Test");
+    }
+
 }
