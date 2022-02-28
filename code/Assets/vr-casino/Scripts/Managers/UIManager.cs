@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.InputSystem;
 
 public class UIManager : MonoBehaviour
 {
@@ -21,6 +22,8 @@ public class UIManager : MonoBehaviour
     private Button _exitButton;
     [SerializeField]
     private Button _audioButton;
+    [SerializeField]
+    private InputActionReference _debugButtonDeal, _debugButtonNewGame;
     /*[SerializeField]
     private Sprite _audioOffSprite;*/
 
@@ -44,6 +47,8 @@ public class UIManager : MonoBehaviour
 
         _audioButton.onClick.AddListener(OnAudioButtonClick);
         _audioImage = _audioButton.GetComponent<Image>();
+        _debugButtonDeal.action.performed += DealButton;
+        _debugButtonNewGame.action.performed += NewGameButton;
         //_audioOnSprite = _audioImage.sprite;
 
         //_scoreText =  gameObject.GetComponent<TextMeshProUGUI>();
@@ -74,8 +79,15 @@ public class UIManager : MonoBehaviour
         }*/
     }
 
-    public void DealButton()
+    public void DealButton(InputAction.CallbackContext context)
     {
         Debug.Log("Caalling");
+        OnDealButtonEvent();
+    }
+
+    public void NewGameButton(InputAction.CallbackContext context)
+    {
+        Debug.Log("NewGame");
+        OnNewGameButtonEvent();
     }
 }

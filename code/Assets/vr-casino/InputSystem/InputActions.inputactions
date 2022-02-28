@@ -136,6 +136,54 @@
                     "isPartOfComposite": true
                 }
             ]
+        },
+        {
+            "name": "ButtonDebug",
+            "id": "0dd2cdda-5243-4b3d-9006-fa0d4f96df89",
+            "actions": [
+                {
+                    "name": "OnClickDeal",
+                    "type": "Button",
+                    "id": "9d596a38-4149-4cca-8711-ddb73c4f25d1",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "NewGameEvent",
+                    "type": "Button",
+                    "id": "2da32770-64de-4ee5-833b-e263ce17b240",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "713abb37-f7c2-4aa2-bf4f-3dbb3c4bd6a8",
+                    "path": "<Keyboard>/k",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "OnClickDeal",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "26210878-bced-41fe-bc63-5ddedd0b80a0",
+                    "path": "<Keyboard>/n",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "NewGameEvent",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []

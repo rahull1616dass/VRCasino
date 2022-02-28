@@ -3312,6 +3312,8 @@ MonoBehaviour:
   _newGameButton: {fileID: 954949444}
   _exitButton: {fileID: 1658142339}
   _audioButton: {fileID: 899564825}
+  _debugButtonDeal: {fileID: 2468865110491879167, guid: d367f4f6ea67cef4085822ab48501121, type: 3}
+  _debugButtonNewGame: {fileID: -3206008633666564640, guid: d367f4f6ea67cef4085822ab48501121, type: 3}
 --- !u!1 &398562340460818575
 GameObject:
   m_ObjectHideFlags: 0
