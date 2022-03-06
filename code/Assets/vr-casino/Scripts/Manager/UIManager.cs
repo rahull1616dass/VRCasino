@@ -97,10 +97,4 @@ public class UIManager : MonoBehaviour
         Debug.Log("Hit");
         OnHitButtonEvent();
     }
-
-    public void Test()
-    {
-        Debug.Log("Test");
-    }
-
 }

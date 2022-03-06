@@ -34,7 +34,7 @@ public class Dealer : MonoBehaviour
         for (int i = 0; i < 2; i++) {
             GiveCard(player, showFirstCard);
             //Apply 'false' for the first card only.
-            showFirstCard = true;
+            showFirstCard = false;
         }
     }
 
@@ -60,9 +60,9 @@ public class Dealer : MonoBehaviour
     private CardDisplay GetDisplay(Transform parent)
     {
         Vector3 position = parent.position;
-        position.x += parent.childCount * 1.5f;
+        position.x += parent.childCount * 0.2f;
 
-        CardDisplay display = _poolingSystem.Dequeue(parent, position, parent.rotation);
+        CardDisplay display = _poolingSystem.Dequeue(parent, position/*, parent.rotation*/);
 
         return display;
     }

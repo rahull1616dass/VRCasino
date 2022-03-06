@@ -10,7 +10,6 @@ public enum EFlipType
 [RequireComponent(typeof(MeshRenderer))]
 public class CardDisplay : MonoBehaviour
 {
-    private Material _material;
     //private Sprite _backCardSprite;
     private Transform _thisObjectTransform;
 
@@ -18,7 +17,6 @@ public class CardDisplay : MonoBehaviour
 
     private void Awake()
     {
-        _material = GetComponent<Material>();
         _thisObjectTransform = transform;
         FlipTheCard();
         //_backCardSprite = _material.sprite;
@@ -31,14 +29,15 @@ public class CardDisplay : MonoBehaviour
         Card = null;
     }
 
-    private void FlipTheCard(EFlipType flipType=EFlipType.EFlipBack)
+    private void FlipTheCard(EFlipType flipType = EFlipType.EFlipBack)
     {
-        _thisObjectTransform.Rotate(new Vector3(_thisObjectTransform.rotation.eulerAngles.x, _thisObjectTransform.rotation.eulerAngles.y, 180f * (int)flipType));
+        _thisObjectTransform.localEulerAngles = new Vector3(_thisObjectTransform.rotation.eulerAngles.x, _thisObjectTransform.rotation.eulerAngles.y, 180f * (int)flipType);
     }
 
     public void SetCard(Card card)
     {
         Card = card;
+        GetComponent<Renderer>().material = card.Material;
     }
 
     public void FaceUp()

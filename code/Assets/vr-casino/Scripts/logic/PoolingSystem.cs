@@ -24,13 +24,13 @@ public class PoolingSystem : MonoBehaviour
         }
     }
 
-    public CardDisplay Dequeue(Transform parent, Vector3 position, Quaternion rotation)
+    public CardDisplay Dequeue(Transform parent, Vector3 position/*, Quaternion rotation*/)
     {
         CardDisplay display = _poolQueue.Dequeue();
 
         display.transform.SetParent(parent);
         display.transform.position = position;
-        display.transform.rotation = rotation;
+        //display.transform.rotation = rotation;
 
         display.gameObject.SetActive(true);
 
