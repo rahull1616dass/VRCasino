@@ -1,6 +1,7 @@
-﻿using System.Collections;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour
 {
@@ -14,8 +15,16 @@ public class GameManager : MonoBehaviour
     private UIManager _uiManager;
     [SerializeField]
     private Dealer _dealer;
+
     [SerializeField]
-    private ComputerPlayer _computer;
+    private DealerPlayer _dealerPlayer;
+
+    [SerializeField]
+    private List<ComputerPlayer> _computers;
+    
+    [SerializeField]
+    private HumanPlayer _human;
+
     [SerializeField]
     private HumanPlayer _human;
 
@@ -57,6 +66,11 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        _computers = new List<ComputerPlayer>{
+                        new ComputerPlayer(),
+                        new ComputerPlayer(),
+                        new ComputerPlayer()          
+                    };
         Subscriptions();
 
         OnNewGameEvent();
@@ -97,8 +111,10 @@ public class GameManager : MonoBehaviour
 
         Debug.Log("Call");
         _dealer.Deal(_human);
-        _dealer.Deal(_computer, false);
-
+        foreach(ComputerPlayer c in _computers){
+            _dealer.Deal(c);
+        }
+        _dealer.Deal(_dealerPlayer, false);
         EvaluateHands(GameState.HumanTurn);
     }
 
@@ -118,7 +134,7 @@ public class GameManager : MonoBehaviour
 
     private void OnNewGameEvent()
     {
-        _dealer.Reset(_human, _computer);
+        _dealer.Reset(_human);
 
         CurrentState = GameState.None;
         CurrentAction = GameAction.Deal;
