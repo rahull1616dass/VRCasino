@@ -8,6 +8,8 @@ public abstract class Player : MonoBehaviour
     public bool IsHitting { get; set; }
     public int Score { get; set; }
 
+    public int Bet { get; set; }
+
     private void Awake()
     {
         Transform = transform;
