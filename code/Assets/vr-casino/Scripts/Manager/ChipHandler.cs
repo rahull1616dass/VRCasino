@@ -12,6 +12,9 @@ public class ChipHandler : MonoBehaviour
     [SerializeField] GameObject ChipPrefab;
     [SerializeField] Player player;
 
+    float lastChipHeight = 0;
+    float chipHeight = 0.0033f;
+
 
     private void Start()
     {
@@ -30,9 +33,13 @@ public class ChipHandler : MonoBehaviour
         {
            foreach(ChipSO Chip in Chips)
             {
-                if(chipValue > (int)Chip.m_EChipType)
+                if (chipValue >= (int)Chip.m_EChipType)
                 {
-                    Instantiate(ChipPrefab, ChipParent).transform.position = PlayerPos.position;
+                    GameObject chip = Instantiate(ChipPrefab, ChipParent);
+                    chip.SetActive(true);
+                    chip.transform.localPosition = PlayerPos.localPosition + new Vector3(0, chipHeight + lastChipHeight, 0);
+                    lastChipHeight = Math.Abs(PlayerPos.localPosition.y - chip.transform.localPosition.y);
+                    chip.GetComponent<Renderer>().material = Chip.m_ChipMat;
                     chipValue -= (int)Chip.m_EChipType;
                     player.currentChips.Add(Chip);
                 }

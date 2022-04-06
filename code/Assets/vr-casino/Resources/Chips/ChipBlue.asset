@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62ee93d69dd0ebd49a6790396f860754, type: 3}
   m_Name: ChipBlue
   m_EditorClassIdentifier: 
-  m_EChipType: 2
+  m_EChipType: 10
   m_ChipMat: {fileID: 2100000, guid: a2db0c3c67993af4aaa820b96620af34, type: 2}

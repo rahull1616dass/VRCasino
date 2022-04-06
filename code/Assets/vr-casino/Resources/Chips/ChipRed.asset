@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62ee93d69dd0ebd49a6790396f860754, type: 3}
   m_Name: ChipRed
   m_EditorClassIdentifier: 
-  m_EChipType: 4
+  m_EChipType: 5
   m_ChipMat: {fileID: 2100000, guid: 42eb888fb9d1b4d4bb9a7ecff9ff912d, type: 2}
