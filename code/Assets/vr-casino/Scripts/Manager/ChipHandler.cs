@@ -6,15 +6,17 @@ using UnityEngine;
 
 public class ChipHandler : MonoBehaviour
 {
+    // The height of each chip, so that when stacked on top of each other the chips won't get clipped.
+    const float CHIP_HEIGHT = 0.0033f;
+
+    // Distance between two given chip stacks.
+    const float CHIP_DISTANCE = 0.05f;
+
     [SerializeField] List<ChipSO> Chips;
     [SerializeField] Transform PlayerPos, ChipParent;
     [SerializeField] int InitalChipValue = 500;
     [SerializeField] GameObject ChipPrefab;
     [SerializeField] Player player;
-
-    float lastChipHeight = 0;
-    float chipHeight = 0.0033f;
-
 
     private void Start()
     {
@@ -29,21 +31,48 @@ public class ChipHandler : MonoBehaviour
 
     public void GenerateChipsForPlayer(int chipValue)
     {
+        Dictionary<EChipValue, int> chipStackSizes = new Dictionary<EChipValue, int>();
+        foreach (EChipValue chipType in Enum.GetValues(typeof(EChipValue)))
+        {
+            chipStackSizes.Add(chipType, 0);
+        }
+
+
         while (chipValue > 0)
         {
-           foreach(ChipSO Chip in Chips)
+            foreach (ChipSO Chip in Chips)
             {
                 if (chipValue >= (int)Chip.m_EChipType)
                 {
                     GameObject chip = Instantiate(ChipPrefab, ChipParent);
                     chip.SetActive(true);
-                    chip.transform.localPosition = PlayerPos.localPosition + new Vector3(0, chipHeight + lastChipHeight, 0);
-                    lastChipHeight = Math.Abs(PlayerPos.localPosition.y - chip.transform.localPosition.y);
+                    chip.transform.localPosition = PlayerPos.localPosition +
+                        new Vector3(
+                         GetStackPosition(Chip.m_EChipType) * CHIP_DISTANCE,
+                         chipStackSizes[Chip.m_EChipType] * CHIP_HEIGHT,
+                         0
+                        );
+                    chipStackSizes[Chip.m_EChipType]++;
                     chip.GetComponent<Renderer>().material = Chip.m_ChipMat;
+
                     chipValue -= (int)Chip.m_EChipType;
                     player.currentChips.Add(Chip);
                 }
             }
+        }
+    }
+
+    // Each stack is ordered accordingly, multiplied by the CHIP_DISTANCE.
+    public int GetStackPosition(EChipValue eChipValue)
+    {
+        switch (eChipValue)
+        {
+            case EChipValue.White: return 1;
+            case EChipValue.Red: return 2;
+            case EChipValue.Blue: return 3;
+            case EChipValue.Green: return 4;
+            case EChipValue.Black: return 5;
+            default: return 0;
         }
     }
 }
