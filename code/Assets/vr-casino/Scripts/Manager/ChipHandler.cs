@@ -15,7 +15,7 @@ public class ChipHandler : MonoBehaviour
     [SerializeField] List<ChipSO> Chips;
     [SerializeField] Transform PlayerPos, ChipParent;
     [SerializeField] int InitalChipValue = 500;
-    [SerializeField] GameObject ChipPrefab;
+    [SerializeField] Chip ChipPrefab;
     [SerializeField] Player player;
 
     private void Start()
@@ -23,10 +23,10 @@ public class ChipHandler : MonoBehaviour
         GenerateChipsForPlayer(InitalChipValue);
     }
 
-    public void Bet(ChipSO Chip)
+    public void Bet(Chip Chip)
     {
         player.currentChips.Remove(Chip);
-        player.CurrentBet += (int)Chip.m_EChipType;
+        player.CurrentBet += (int)Chip._chipValue;
     }
 
     public void GenerateChipsForPlayer(int chipValue)
@@ -44,8 +44,8 @@ public class ChipHandler : MonoBehaviour
             {
                 if (chipValue >= (int)Chip.m_EChipType)
                 {
-                    GameObject chip = Instantiate(ChipPrefab, ChipParent);
-                    chip.SetActive(true);
+                    Chip chip = Instantiate<Chip>(ChipPrefab, ChipParent);
+                    chip.gameObject.SetActive(true);
                     chip.transform.localPosition = PlayerPos.localPosition +
                         new Vector3(
                          GetStackPosition(Chip.m_EChipType) * CHIP_DISTANCE,
@@ -54,9 +54,10 @@ public class ChipHandler : MonoBehaviour
                         );
                     chipStackSizes[Chip.m_EChipType]++;
                     chip.GetComponent<Renderer>().material = Chip.m_ChipMat;
+                    chip._chipValue = Chip.m_EChipType;
 
                     chipValue -= (int)Chip.m_EChipType;
-                    player.currentChips.Add(Chip);
+                    player.currentChips.Add(chip.GetComponent<Chip>());
                 }
             }
         }

@@ -9,7 +9,7 @@ public abstract class Player : MonoBehaviour
     public bool IsHitting { get; set; }
     public int Score { get; set; }
 
-    public List<ChipSO> currentChips = new List<ChipSO>();
+    public List<Chip> currentChips = new List<Chip>();
 
     public int Bet { get; set; }
     public int CurrentBet { get; set; }
