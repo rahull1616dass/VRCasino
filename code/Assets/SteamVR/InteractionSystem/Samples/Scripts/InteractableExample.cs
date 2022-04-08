@@ -38,8 +38,8 @@ namespace Valve.VR.InteractionSystem.Sample
             if (interactable.attachedToHand == null && startingGrabType != GrabTypes.None)
             {
                 // Save our position/rotation so that we can restore it when we detach
-                oldPosition = transform.position;
-                oldRotation = transform.rotation;
+                //oldPosition = transform.position;
+                //oldRotation = transform.rotation;
 
                 // Call this to continue receiving HandHoverUpdate messages,
                 // and prevent the hand from hovering over anything else
@@ -60,8 +60,8 @@ namespace Valve.VR.InteractionSystem.Sample
 
                 //if(transform.position != GameObject.FindGameObjectWithTag("whiteHole").transform.position)
                 //{
-                transform.position = oldPosition;
-                    transform.rotation = oldRotation;
+                //transform.position = oldPosition;
+                //    transform.rotation = oldRotation;
                 //}
             }
         }

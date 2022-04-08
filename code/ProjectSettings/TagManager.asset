@@ -6,7 +6,7 @@ TagManager:
   tags:
   - projectile
   - FxTemporaire
-  - whiteHole
+  - Table
   layers:
   - Default
   - TransparentFX
@@ -14,8 +14,8 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
+  - WhiteHole
+  - Chip
   - 
   - 
   - 
