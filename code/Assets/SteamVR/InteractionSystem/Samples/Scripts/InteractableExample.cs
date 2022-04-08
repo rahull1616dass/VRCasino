@@ -58,13 +58,13 @@ namespace Valve.VR.InteractionSystem.Sample
 
                 // Restore position/rotation
 
-                if(transform.position != GameObject.FindGameObjectWithTag("whiteHole").transform.position)
-                {
-                    transform.position = oldPosition;
+                //if(transform.position != GameObject.FindGameObjectWithTag("whiteHole").transform.position)
+                //{
+                transform.position = oldPosition;
                     transform.rotation = oldRotation;
-                }
+                //}
             }
-		}
+        }
 
 		private void OnHandFocusAcquired( Hand hand )
 		{
