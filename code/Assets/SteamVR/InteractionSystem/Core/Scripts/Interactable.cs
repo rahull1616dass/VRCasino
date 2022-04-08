@@ -246,38 +246,9 @@ namespace Valve.VR.InteractionSystem
         /// <summary>
         /// Called when a Hand starts hovering over this object
         /// </summary>
-        protected virtual void OnHandHoverBegin(Hand hand)
-        {
-            wasHovering = isHovering;
-            isHovering = true;
-
-            hoveringHands.Add(hand);
-
-            if (highlightOnHover == true && wasHovering == false)
-            {
-                CreateHighlightRenderers();
-                UpdateHighlightRenderers();
-            }
-        }
-
-
-        /// <summary>
-        /// Called when a Hand stops hovering over this object
-        /// </summary>
-        protected virtual void OnHandHoverEnd(Hand hand)
-        {
-            wasHovering = isHovering;
-
-            hoveringHands.Remove(hand);
-
-            if (hoveringHands.Count == 0)
-            {
-                isHovering = false;
-
-                if (highlightOnHover && highlightHolder != null)
-                    Destroy(highlightHolder);
-            }
-        }
+        /// 
+        
+        
 
         protected virtual void Update()
         {

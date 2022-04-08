@@ -13,8 +13,7 @@ namespace Valve.VR.InteractionSystem.Sample
 	[RequireComponent( typeof( Interactable ) )]
 	public class InteractableExample : MonoBehaviour
     {
-        private TextMesh generalText;
-        private TextMesh hoveringText;
+ 
         private Vector3 oldPosition;
 		private Quaternion oldRotation;
 
@@ -27,38 +26,10 @@ namespace Valve.VR.InteractionSystem.Sample
 		//-------------------------------------------------
 		void Awake()
 		{
-			var textMeshs = GetComponentsInChildren<TextMesh>();
-            generalText = textMeshs[0];
-            hoveringText = textMeshs[1];
-
-            generalText.text = "No Hand Hovering";
-            hoveringText.text = "Hovering: False";
-
+			
             interactable = this.GetComponent<Interactable>();
 		}
 
-
-		//-------------------------------------------------
-		// Called when a Hand starts hovering over this object
-		//-------------------------------------------------
-		private void OnHandHoverBegin( Hand hand )
-		{
-			generalText.text = "Hovering hand: " + hand.name;
-		}
-
-
-		//-------------------------------------------------
-		// Called when a Hand stops hovering over this object
-		//-------------------------------------------------
-		private void OnHandHoverEnd( Hand hand )
-		{
-			generalText.text = "No Hand Hovering";
-		}
-
-
-		//-------------------------------------------------
-		// Called every Update() while a Hand is hovering over this object
-		//-------------------------------------------------
 		private void HandHoverUpdate( Hand hand )
 		{
             GrabTypes startingGrabType = hand.GetGrabStarting();
@@ -86,54 +57,15 @@ namespace Valve.VR.InteractionSystem.Sample
                 hand.HoverUnlock(interactable);
 
                 // Restore position/rotation
-                transform.position = oldPosition;
-                transform.rotation = oldRotation;
+
+                if(transform.position != GameObject.FindGameObjectWithTag("whiteHole").transform.position)
+                {
+                    transform.position = oldPosition;
+                    transform.rotation = oldRotation;
+                }
             }
 		}
 
-
-		//-------------------------------------------------
-		// Called when this GameObject becomes attached to the hand
-		//-------------------------------------------------
-		private void OnAttachedToHand( Hand hand )
-        {
-            generalText.text = string.Format("Attached: {0}", hand.name);
-            attachTime = Time.time;
-		}
-
-
-
-		//-------------------------------------------------
-		// Called when this GameObject is detached from the hand
-		//-------------------------------------------------
-		private void OnDetachedFromHand( Hand hand )
-		{
-            generalText.text = string.Format("Detached: {0}", hand.name);
-		}
-
-
-		//-------------------------------------------------
-		// Called every Update() while this GameObject is attached to the hand
-		//-------------------------------------------------
-		private void HandAttachedUpdate( Hand hand )
-		{
-            generalText.text = string.Format("Attached: {0} :: Time: {1:F2}", hand.name, (Time.time - attachTime));
-		}
-
-        private bool lastHovering = false;
-        private void Update()
-        {
-            if (interactable.isHovering != lastHovering) //save on the .tostrings a bit
-            {
-                hoveringText.text = string.Format("Hovering: {0}", interactable.isHovering);
-                lastHovering = interactable.isHovering;
-            }
-        }
-
-
-		//-------------------------------------------------
-		// Called when this attached GameObject becomes the primary attached object
-		//-------------------------------------------------
 		private void OnHandFocusAcquired( Hand hand )
 		{
 		}

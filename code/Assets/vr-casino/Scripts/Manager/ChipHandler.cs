@@ -10,7 +10,7 @@ public class ChipHandler : MonoBehaviour
     const float CHIP_HEIGHT = 0.0033f;
 
     // Distance between two given chip stacks.
-    const float CHIP_DISTANCE = 0.05f;
+    const float CHIP_DISTANCE = 0.08f;
 
     [SerializeField] List<ChipSO> Chips;
     [SerializeField] Transform PlayerPos, ChipParent;
