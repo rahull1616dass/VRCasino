@@ -32,6 +32,7 @@ public class CardDisplay : MonoBehaviour
     private void FlipTheCard(EFlipType flipType = EFlipType.EFlipBack)
     {
         _thisObjectTransform.localEulerAngles = new Vector3(_thisObjectTransform.rotation.eulerAngles.x, _thisObjectTransform.rotation.eulerAngles.y, 180f * (int)flipType);
+        _thisObjectTransform.GetComponent<Animator>().Play("flipCardAnim");
     }
 
     public void SetCard(Card card)
