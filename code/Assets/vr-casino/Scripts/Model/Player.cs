@@ -11,7 +11,6 @@ public abstract class Player : MonoBehaviour
 
     public List<Chip> currentChips = new List<Chip>();
 
-    public int Bet { get; set; }
     public int CurrentBet { get; set; }
 
     private void Awake()
