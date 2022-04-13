@@ -201,6 +201,7 @@ public class GameManager : MonoBehaviour
         _computer.Hand.Show();
 
         if (CurrentState == GameState.HumanWon) {
+            _human.GetComponent<ChipHandler>().GenerateChipsForPlayer(_human.CurrentBet);
             _human.Score++;
         }
         else if (CurrentState == GameState.ComputerWon) {
