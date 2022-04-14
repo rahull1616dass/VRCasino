@@ -110,7 +110,7 @@ public class GameManager : MonoBehaviour
 
     private void OnDealEvent()
     {
-
+        _human.LockBettingValue();
         Debug.Log("Call");
         _dealer.Deal(_human);
         foreach(ComputerPlayer c in _computers){

@@ -16,17 +16,10 @@ public class ChipHandler : MonoBehaviour
     [SerializeField] Transform PlayerPos, ChipParent;
     [SerializeField] int InitalChipValue = 500;
     [SerializeField] Chip ChipPrefab;
-    [SerializeField] Player player;
 
     private void Start()
     {
         GenerateChipsForPlayer(InitalChipValue);
-    }
-
-    public void Bet(Chip Chip)
-    {
-        player.currentChips.Remove(Chip);
-        player.CurrentBet += (int)Chip._chipValue;
     }
 
     public void GenerateChipsForPlayer(int chipValue)
