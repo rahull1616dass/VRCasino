@@ -7,10 +7,10 @@ using UnityEngine;
 public class ChipHandler : MonoBehaviour
 {
     // The height of each chip, so that when stacked on top of each other the chips won't get clipped.
-    const float CHIP_HEIGHT = 0.0033f;
+    const float CHIP_HEIGHT = 0.005f;
 
     // Distance between two given chip stacks.
-    const float CHIP_DISTANCE = 0.08f;
+    const float CHIP_DISTANCE_X = 0.08f;
 
     [SerializeField] List<ChipSO> Chips;
     [SerializeField] Transform PlayerPos, ChipParent;
@@ -48,7 +48,7 @@ public class ChipHandler : MonoBehaviour
                     chip.gameObject.SetActive(true);
                     chip.transform.localPosition = PlayerPos.localPosition +
                         new Vector3(
-                         GetStackPosition(Chip.m_EChipType) * CHIP_DISTANCE,
+                         GetStackPosition(Chip.m_EChipType) * CHIP_DISTANCE_X,
                          chipStackSizes[Chip.m_EChipType] * CHIP_HEIGHT,
                          0
                         );
