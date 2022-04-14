@@ -44,7 +44,7 @@ namespace Valve.VR.InteractionSystem
 
     private void Start()
     {
-            _dealButton.onButtonDown.AddListener((Hand arg0) => OnDealButtonEvent());
+         _dealButton.onButtonDown.AddListener((Hand arg0) => OnDealButtonEvent());
         _hitButton.onButtonDown.AddListener((Hand arg0) => OnHitButtonEvent());
         _standButton.onButtonDown.AddListener((Hand arg0) => OnStandButtonEvent());
         _newGameButton.onButtonDown.AddListener((Hand arg0) => OnNewGameButtonEvent());
@@ -60,43 +60,9 @@ namespace Valve.VR.InteractionSystem
         //_scoreText =  gameObject.GetComponent<TextMeshProUGUI>();
     }
 
-        private void DealEvent(Hand arg0)
-        {
-            throw new NotImplementedException();
-        }
-
-        private void HitEvent(Hand arg0)
-        {
-
-        }
-
-        private void StandEvent(Hand arg0)
-        {
-
-        }
-        private void NewgameEvent(Hand arg0)
-        {
-
-        }
-
-        private void ExitEvent(Hand arg0)
-        {
-
-        }
-
-
-
-        private void Update()
-    {
-       
-    }
-
     public void OnButtonDown(Hand fromHand)
     {
         ColorSelf(Color.cyan);
-        
-
-
     }
 
     public void OnButtonUp(Hand fromHand)

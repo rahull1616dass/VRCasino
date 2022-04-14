@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Valve.VR.InteractionSystem;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class GameManager : MonoBehaviour
     /*[SerializeField]
     private AudioManager _audioManager;*/
     [SerializeField]
-    private UIManager _uiManager;
+    private UIManager_VR _uiManager;
     [SerializeField]
     private Dealer _dealer;
     [SerializeField]
