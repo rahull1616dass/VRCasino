@@ -30,7 +30,7 @@ public class Chip : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if (!InsideTheHole && !InitialState)
+        if (!InsideTheHole && InitialState)
             return;
         if (collision.transform.tag == "Table")
         {
