@@ -134,10 +134,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Interactable
       objectReference: {fileID: 0}
-    - target: {fileID: 68495557275237148, guid: 29aea48252dcdde4e8a6509c59e439d9, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 68495557275237219, guid: 29aea48252dcdde4e8a6509c59e439d9, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -1994,13 +1990,8 @@ RectTransform:
   - {fileID: 1359382416}
   - {fileID: 551714097}
   m_Father: {fileID: 0}
-<<<<<<< HEAD
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-=======
-  m_RootOrder: 13
-  m_LocalEulerAnglesHint: {x: 90, y: -177.3, z: 0}
->>>>>>> main
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 1.883, y: 2.059}
@@ -2088,13 +2079,8 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 107946, guid: dc06161b6d97feb419f45f03b62e14b9, type: 3}
-<<<<<<< HEAD
       propertyPath: m_IsActive
       value: 1
-=======
-      propertyPath: 
-      value: 
->>>>>>> main
       objectReference: {fileID: 0}
     - target: {fileID: 125964, guid: dc06161b6d97feb419f45f03b62e14b9, type: 3}
       propertyPath: m_IsActive
