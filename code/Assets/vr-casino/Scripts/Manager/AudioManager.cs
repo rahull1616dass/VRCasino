@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using Valve.VR.InteractionSystem;
 
 [RequireComponent(typeof(AudioSource))]
 public class AudioManager : MonoBehaviour
@@ -15,7 +16,7 @@ public class AudioManager : MonoBehaviour
     {
         _audioSource = GetComponent<AudioSource>();
 
-        var uiManager = FindObjectOfType<UIManager>();
+        var uiManager = FindObjectOfType<UIManager_VR>();
         uiManager.OnAudioButtonEvent += SwitchAudioEvent;
     }
 
