@@ -8,12 +8,16 @@ public class BettingHole : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (other.GetComponent<Chip>() == null)
+            return;
         other.gameObject.GetComponent<Chip>().InsideTheHole = true;
         m_ChipValues += (int)other.gameObject.GetComponent<Chip>()._chipValue;
     }
 
     private void OnTriggerExit(Collider other)
     {
+        if (other.GetComponent<Chip>() == null)
+            return;
         other.gameObject.GetComponent<Chip>().InsideTheHole = false;
         m_ChipValues -= (int)other.gameObject.GetComponent<Chip>()._chipValue;
     }

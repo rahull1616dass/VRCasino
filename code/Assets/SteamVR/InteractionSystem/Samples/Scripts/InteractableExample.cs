@@ -19,6 +19,8 @@ namespace Valve.VR.InteractionSystem.Sample
 
 		private float attachTime;
 
+         
+
 		private Hand.AttachmentFlags attachmentFlags = Hand.defaultAttachmentFlags & ( ~Hand.AttachmentFlags.SnapOnAttach ) & (~Hand.AttachmentFlags.DetachOthers) & (~Hand.AttachmentFlags.VelocityMovement);
 
         private Interactable interactable;
@@ -34,6 +36,7 @@ namespace Valve.VR.InteractionSystem.Sample
 		{
             GrabTypes startingGrabType = hand.GetGrabStarting();
             bool isGrabEnding = hand.IsGrabEnding(this.gameObject);
+            
 
             if (interactable.attachedToHand == null && startingGrabType != GrabTypes.None)
             {

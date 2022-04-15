@@ -13,32 +13,33 @@ public class Chip : MonoBehaviour
     [HideInInspector]
     public bool InsideTheHole;
 
-    private bool InitialState;
+    [HideInInspector]
+    public bool InitialState;
+
 
     private void Start()
     {
         //Save our position / rotation so that we can restore it when we detach
-        oldPosition = transform.position + new Vector3(0, 5f, 0);
+        oldPosition = transform.position;
         oldRotation = transform.rotation;
         InitialState=true;
         
     }
-
-    private void HandHoverUpdate(Hand hand)
-    {
-        Debug.Log(hand);
-    }
     private void OnCollisionEnter(Collision collision)
     {
-        if (!InsideTheHole && InitialState)
+        if (InitialState)
             return;
-        if (collision.transform.tag == "Table")
+        if (collision.transform.tag == "Table"&&!InsideTheHole)
         {
             transform.position = oldPosition;
             transform.rotation = oldRotation;
             InitialState =true;
         }
-        else
-            InitialState =false;
     }
-}
+
+    private void OnTriggerExit(Collider other)
+    {
+        Debug.Log("Called");
+        InitialState = false;
+    }
+ }
