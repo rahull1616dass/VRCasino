@@ -11,7 +11,8 @@ namespace Valve.VR.InteractionSystem
     public class UIManager_VR : MonoBehaviour
 {
     private Image _audioImage;
-    //private Sprite _audioOnSprite;
+    private bool _isAudioDisabled;
+        //private Sprite _audioOnSprite;
 
     [SerializeField]
     private TextMeshProUGUI _scoreText;
@@ -28,7 +29,9 @@ namespace Valve.VR.InteractionSystem
     [SerializeField]
     private HoverButton _audioButton;
     [SerializeField]
-    private InputActionReference _debugButtonDeal, _debugButtonNewGame, _debugButtonHit;
+     private AudioSource gameAudio;
+
+        private InputActionReference _debugButtonDeal, _debugButtonNewGame, _debugButtonHit;
     /*[SerializeField]
     private Sprite _audioOffSprite;*/
 
@@ -55,10 +58,15 @@ namespace Valve.VR.InteractionSystem
         _debugButtonDeal.action.performed += DealButton;
         _debugButtonNewGame.action.performed += NewGameButton;
         _debugButtonHit.action.performed += HitGameButton;
-        //_audioOnSprite = _audioImage.sprite;
 
-        //_scoreText =  gameObject.GetComponent<TextMeshProUGUI>();
-    }
+        _isAudioDisabled = false;
+        gameAudio.Play();
+
+            //_audioOnSprite = _audioImage.sprite;
+
+            //_scoreText =  gameObject.GetComponent<TextMeshProUGUI>();
+
+        }
 
     public void OnButtonDown(Hand fromHand)
     {
@@ -94,15 +102,19 @@ namespace Valve.VR.InteractionSystem
 
     private void OnAudioButtonClick()
     {
-        bool _isAudioDisabled = OnAudioButtonEvent();
-
-        /*if (_isAudioDisabled) {
-            _audioImage.sprite = _audioOffSprite;
+        //bool _isAudioDisabled = OnAudioButtonEvent();
+            if (_isAudioDisabled)
+            {
+                gameAudio.Play();
+                _isAudioDisabled = false;
+            }
+            else
+            {
+                gameAudio.Pause();
+                _isAudioDisabled = true;
+                //_audioImage.sprite = _audioOnSprite;
+            }
         }
-        else {
-            _audioImage.sprite = _audioOnSprite;
-        }*/
-    }
 
     public void DealButton(InputAction.CallbackContext context)
     {

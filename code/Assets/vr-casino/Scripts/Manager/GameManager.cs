@@ -11,10 +11,13 @@ public class GameManager : MonoBehaviour
     private GameAction _currentAction;
     private Coroutine _computerTurnCoroutine;
 
+
+
     /*[SerializeField]
     private AudioManager _audioManager;*/
     [SerializeField]
     private UIManager _uiManager;
+
     [SerializeField]
     private Dealer _dealer;
 
@@ -66,6 +69,8 @@ public class GameManager : MonoBehaviour
         Subscriptions();
 
         OnNewGameEvent();
+
+ 
     }
 
     private void Subscriptions()
@@ -130,11 +135,7 @@ public class GameManager : MonoBehaviour
 
     private void OnExitEvent()
     {
-        if (_computerTurnCoroutine != null) {
-            StopCoroutine(_computerTurnCoroutine);
-        }
-
-        SceneManager.LoadScene("Menu");
+        Application.Quit();
     }
 
     private IEnumerator OnComputerTurn()
