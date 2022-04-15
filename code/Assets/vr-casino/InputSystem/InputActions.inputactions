@@ -204,6 +204,22 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "VRInputs",
+            "id": "d5b970c9-4c03-4685-af6a-df9a97bd7b4e",
+            "actions": [
+                {
+                    "name": "New action",
+                    "type": "Value",
+                    "id": "558fdde5-2849-47d7-bef4-e19b678e58c4",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": []
         }
     ],
     "controlSchemes": []

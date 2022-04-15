@@ -19,6 +19,8 @@ public class GameManager : MonoBehaviour
     private UIManager _uiManager;
 
     [SerializeField]
+    private UIManager_VR _uiManagerVR;
+    [SerializeField]
     private Dealer _dealer;
 
     [SerializeField]
@@ -33,7 +35,7 @@ public class GameManager : MonoBehaviour
     public delegate void GameActionEvent(GameAction actions);
     public event GameActionEvent OnGameActionChanged;
 
-    private GameState CurrentState {
+    public GameState CurrentState {
         get {
             return _currentState;
         }
@@ -78,7 +80,7 @@ public class GameManager : MonoBehaviour
         _uiManager.OnDealButtonEvent += OnButtonEvent;
         _uiManager.OnHitButtonEvent += OnButtonEvent;
         _uiManager.OnStandButtonEvent += OnButtonEvent;
-        _uiManager.OnNewGameButtonEvent += OnButtonEvent;
+        _uiManagerVR.OnNewGameButtonEvent += OnButtonEvent;
         _uiManager.OnExitButtonEvent += OnButtonEvent;
 
         _uiManager.OnDealButtonEvent += OnCardEvent;
@@ -87,10 +89,11 @@ public class GameManager : MonoBehaviour
         _uiManager.OnDealButtonEvent += OnDealEvent;
         _uiManager.OnHitButtonEvent += OnHitEvent;
         _uiManager.OnStandButtonEvent += OnStandEvent;
-        _uiManager.OnNewGameButtonEvent += OnNewGameEvent;
+        _uiManagerVR.OnNewGameButtonEvent += OnNewGameEvent;
         _uiManager.OnExitButtonEvent += OnExitEvent;
 
         OnGameActionChanged += _uiManager.OnUpdateGameplayButtons;
+
     }
 
     private void OnButtonEvent()
@@ -135,6 +138,9 @@ public class GameManager : MonoBehaviour
 
     private void OnExitEvent()
     {
+        if (_computerTurnCoroutine != null) {
+            StopCoroutine(_computerTurnCoroutine);
+        }
         Application.Quit();
     }
 
@@ -208,9 +214,12 @@ public class GameManager : MonoBehaviour
         if (CurrentState == GameState.HumanWon) {
             _human.GetComponent<ChipHandler>().GenerateChipsForPlayer(_human.CurrentBet * 2);
             _human.Score++;
+
+            Debug.Log("HumanWon");
         }
         else if (CurrentState == GameState.ComputerWon) {
             _computer.Score++;
+            Debug.Log("ComputerWon");
         }
 
         CurrentAction = GameAction.NewGame;
