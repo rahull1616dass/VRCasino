@@ -1676,11 +1676,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 931100491}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a90a439a493c6f4887a252f0f35fe48, type: 3}
+  m_Script: {fileID: 11500000, guid: de9d67852a8714bba8817b074aa679b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   currentChips: []
-  _turnTime: 1
+  _turnTime: 0
 --- !u!1001 &944968605
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1792,13 +1792,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 951442630}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 343164f4f2315442aab81a20f6b32b59, type: 3}
+  m_Script: {fileID: 11500000, guid: b66eff376e0e1e54cb9d54f113b56844, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentChips:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  currentChips: []
+  bettingHole: {fileID: 162793377}
 --- !u!114 &951442633
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2968,8 +2966,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _uiManager: {fileID: 1149037574}
   _dealer: {fileID: 1616848032}
-  _computer: {fileID: 931100493}
+  _dealerPlayer: {fileID: 0}
+  _computers: []
   _human: {fileID: 951442632}
+  _computer: {fileID: 0}
 --- !u!1 &1758617664
 GameObject:
   m_ObjectHideFlags: 0
