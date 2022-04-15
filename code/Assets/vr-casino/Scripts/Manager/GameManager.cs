@@ -81,7 +81,7 @@ public class GameManager : MonoBehaviour
         _uiManager.OnHitButtonEvent += OnButtonEvent;
         _uiManager.OnStandButtonEvent += OnButtonEvent;
         _uiManagerVR.OnNewGameButtonEvent += OnButtonEvent;
-        _uiManager.OnExitButtonEvent += OnButtonEvent;
+        _uiManagerVR.OnExitButtonEvent += OnButtonEvent;
 
         _uiManager.OnDealButtonEvent += OnCardEvent;
         _uiManager.OnHitButtonEvent += OnCardEvent;
@@ -90,7 +90,7 @@ public class GameManager : MonoBehaviour
         _uiManager.OnHitButtonEvent += OnHitEvent;
         _uiManager.OnStandButtonEvent += OnStandEvent;
         _uiManagerVR.OnNewGameButtonEvent += OnNewGameEvent;
-        _uiManager.OnExitButtonEvent += OnExitEvent;
+        _uiManagerVR.OnExitButtonEvent += OnExitEvent;
 
         OnGameActionChanged += _uiManager.OnUpdateGameplayButtons;
 
@@ -224,6 +224,6 @@ public class GameManager : MonoBehaviour
 
         CurrentAction = GameAction.NewGame;
 
-        _uiManager.UpdateScore(_human.Score, _computer.Score);
+        _uiManagerVR.UpdateScore(_human.Score, _computer.Score);
     }
 }

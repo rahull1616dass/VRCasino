@@ -31,7 +31,7 @@ namespace Valve.VR.InteractionSystem
     [SerializeField]
      private AudioSource gameAudio;
 
-        private InputActionReference _debugButtonDeal, _debugButtonNewGame, _debugButtonHit;
+        //private InputActionReference _debugButtonDeal, _debugButtonNewGame, _debugButtonHit;
     /*[SerializeField]
     private Sprite _audioOffSprite;*/
 
@@ -55,9 +55,9 @@ namespace Valve.VR.InteractionSystem
 
         _audioButton.onButtonDown.AddListener((Hand arg0) => OnAudioButtonClick());
         _audioImage = _audioButton.GetComponent<Image>();
-        _debugButtonDeal.action.performed += DealButton;
-        _debugButtonNewGame.action.performed += NewGameButton;
-        _debugButtonHit.action.performed += HitGameButton;
+        //_debugButtonDeal.action.performed += DealButton;
+        //_debugButtonNewGame.action.performed += NewGameButton;
+        //_debugButtonHit.action.performed += HitGameButton;
 
         _isAudioDisabled = false;
         gameAudio.Play();
