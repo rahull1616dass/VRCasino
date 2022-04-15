@@ -34,7 +34,7 @@ public class Dealer : MonoBehaviour
         for (int i = 0; i < 2; i++) {
             GiveCard(player, showFirstCard);
             //Apply 'false' for the first card only.
-            showFirstCard = false;
+            showFirstCard = true;
         }
     }
 

@@ -14,16 +14,10 @@ public class GameManager : MonoBehaviour
     /*[SerializeField]
     private AudioManager _audioManager;*/
     [SerializeField]
-    private UIManager_VR _uiManager;
+    private UIManager _uiManager;
     [SerializeField]
     private Dealer _dealer;
 
-    [SerializeField]
-    private DealerPlayer _dealerPlayer;
-
-    [SerializeField]
-    private List<ComputerPlayer> _computers;
-    
     [SerializeField]
     private HumanPlayer _human;
 
@@ -68,11 +62,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        _computers = new List<ComputerPlayer>{
-                        new ComputerPlayer(),
-                        new ComputerPlayer(),
-                        new ComputerPlayer()          
-                    };
+              
         Subscriptions();
 
         OnNewGameEvent();
@@ -111,12 +101,8 @@ public class GameManager : MonoBehaviour
     private void OnDealEvent()
     {
         _human.LockBettingValue();
-        Debug.Log("Call");
         _dealer.Deal(_human);
-        foreach(ComputerPlayer c in _computers){
-            _dealer.Deal(c);
-        }
-        _dealer.Deal(_dealerPlayer, false);
+        _dealer.Deal(_computer, false);
         EvaluateHands(GameState.HumanTurn);
     }
 
@@ -136,7 +122,7 @@ public class GameManager : MonoBehaviour
 
     private void OnNewGameEvent()
     {
-        _dealer.Reset(_human);
+        _dealer.Reset(_human, _computer);
 
         CurrentState = GameState.None;
         CurrentAction = GameAction.Deal;

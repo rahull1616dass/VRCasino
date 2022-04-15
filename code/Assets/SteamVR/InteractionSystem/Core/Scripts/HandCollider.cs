@@ -277,6 +277,7 @@ namespace Valve.VR.InteractionSystem
                 float length = Util.RemapNumber(energy, minCollisionEnergy, maxCollisionEnergy, 0.0f, 0.06f);
 
                 hand.hand.TriggerHapticPulse(length, 100, intensity);
+                
             }
         }
 

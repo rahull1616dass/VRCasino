@@ -594,7 +594,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!81 &207108804
 AudioListener:
   m_ObjectHideFlags: 0
@@ -1082,7 +1082,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cardPrefab: {fileID: 1424519924046952052, guid: 2b7433218fa56b14f97a44d01731027c, type: 3}
-  _size: 12
+  _size: 52
 --- !u!4 &595974189
 Transform:
   m_ObjectHideFlags: 0
@@ -1876,6 +1876,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4000014195058408, guid: 88075a54c7fb1484ba25db394b612917, type: 3}
   m_PrefabInstance: {fileID: 994198831}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1006743654 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2829496013785840356, guid: 42ac30c04d21db14c9a9bf7269bb3567, type: 3}
+  m_PrefabInstance: {fileID: 2829496015054087689}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 950874b0c23654610ac102e69a07a99e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1149037569
 GameObject:
   m_ObjectHideFlags: 0
@@ -1896,7 +1907,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1149037570
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2071,7 +2082,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 107946, guid: dc06161b6d97feb419f45f03b62e14b9, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114188, guid: dc06161b6d97feb419f45f03b62e14b9, type: 3}
       propertyPath: m_IsActive
@@ -2958,12 +2969,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b8c6c5cb023e4a48b946eb7f835168f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _uiManager: {fileID: 1149037574}
+  _uiManager: {fileID: 1006743654}
   _dealer: {fileID: 1616848032}
-  _dealerPlayer: {fileID: 0}
-  _computers: []
   _human: {fileID: 951442632}
-  _computer: {fileID: 0}
+  _computer: {fileID: 931100493}
 --- !u!1 &1758617664
 GameObject:
   m_ObjectHideFlags: 0

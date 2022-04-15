@@ -25,14 +25,14 @@ public class CardDisplay : MonoBehaviour
     public void Reset()
     {
         FlipTheCard();
-
         Card = null;
     }
 
     private void FlipTheCard(EFlipType flipType = EFlipType.EFlipBack)
     {
         _thisObjectTransform.localEulerAngles = new Vector3(_thisObjectTransform.rotation.eulerAngles.x, _thisObjectTransform.rotation.eulerAngles.y, 180f * (int)flipType);
-       // _thisObjectTransform.GetComponent<Animator>().Play("flipCardAnim");
+        if (flipType == EFlipType.EFlipFront)
+            GetComponent<Animator>().enabled = true;
     }
 
     public void SetCard(Card card)
