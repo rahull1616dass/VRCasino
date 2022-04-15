@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
     private HumanPlayer _human;
 
     [SerializeField]
-    private HumanPlayer _human;
+    private ComputerPlayer _computer;
 
     public delegate void GameStateEvent(GameState state);
     public event GameStateEvent OnGameStateChanged;

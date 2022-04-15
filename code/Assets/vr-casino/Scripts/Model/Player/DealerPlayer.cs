@@ -19,7 +19,6 @@ public class DealerPlayer : Player
     /// </summary>
     public void UpdateBehaviour(Hand humanHand)
     {
-<<<<<<< HEAD
         /*
         When the dealer has served every player, the dealers face-down card is turned up. If the total is 17 or more, 
         it must stand. If the total is 16 or under, they must take a card.
@@ -28,7 +27,6 @@ public class DealerPlayer : Player
         if(Hand.Count < 17) IsHitting = true;
         else IsHitting = false;
 
-=======
         int computerTotalValue = Hand.TotalValue;
 
         //if the AI's hand contains no Ace, or the AI's Aces count as 1 point.
@@ -69,6 +67,5 @@ public class DealerPlayer : Player
                 IsHitting = true;
             }
         }
->>>>>>> feature/multiple-players
     }
 }

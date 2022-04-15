@@ -16,6 +16,7 @@ public class ChipHandler : MonoBehaviour
     [SerializeField] Transform PlayerPos, ChipParent;
     [SerializeField] int InitalChipValue = 500;
     [SerializeField] Chip ChipPrefab;
+    [SerializeField] Player player;
 
     private void Start()
     {
