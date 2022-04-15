@@ -16,7 +16,7 @@ public class AudioManager : MonoBehaviour
     {
         _audioSource = GetComponent<AudioSource>();
 
-        var uiManager = FindObjectOfType<UIManager_VR>();
+        var uiManager = FindObjectOfType<UIManager>();
         uiManager.OnAudioButtonEvent += SwitchAudioEvent;
     }
 
