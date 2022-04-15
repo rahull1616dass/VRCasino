@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 public class UIManager : MonoBehaviour
 {
     private Image _audioImage;
+    private bool _isAudioDisabled;
     //private Sprite _audioOnSprite;
 
     [SerializeField]
@@ -22,6 +23,8 @@ public class UIManager : MonoBehaviour
     private Button _exitButton;
     [SerializeField]
     private Button _audioButton;
+    [SerializeField]
+    private AudioSource gameAudio;
     [SerializeField]
     private InputActionReference _debugButtonDeal, _debugButtonNewGame, _debugButtonHit;
     /*[SerializeField]
@@ -50,6 +53,9 @@ public class UIManager : MonoBehaviour
         _debugButtonDeal.action.performed += DealButton;
         _debugButtonNewGame.action.performed += NewGameButton;
         _debugButtonHit.action.performed += HitGameButton;
+
+        _isAudioDisabled = false;
+        gameAudio.Play();
         //_audioOnSprite = _audioImage.sprite;
 
         //_scoreText =  gameObject.GetComponent<TextMeshProUGUI>();
@@ -70,14 +76,19 @@ public class UIManager : MonoBehaviour
 
     private void OnAudioButtonClick()
     {
-        bool _isAudioDisabled = OnAudioButtonEvent();
+        //bool _isAudioDisabled = OnAudioButtonEvent();
 
-        /*if (_isAudioDisabled) {
-            _audioImage.sprite = _audioOffSprite;
+        if (_isAudioDisabled)
+        {
+            gameAudio.Play();
+            _isAudioDisabled = false;
         }
-        else {
-            _audioImage.sprite = _audioOnSprite;
-        }*/
+        else
+        {
+            gameAudio.Pause();
+            _isAudioDisabled = true;
+            //_audioImage.sprite = _audioOnSprite;
+        }
     }
 
     public void DealButton(InputAction.CallbackContext context)

@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
     private GameAction _currentAction;
     private Coroutine _computerTurnCoroutine;
 
+
+
     /*[SerializeField]
     private AudioManager _audioManager;*/
     [SerializeField]
@@ -69,6 +71,8 @@ public class GameManager : MonoBehaviour
         Subscriptions();
 
         OnNewGameEvent();
+
+ 
     }
 
     private void Subscriptions()
