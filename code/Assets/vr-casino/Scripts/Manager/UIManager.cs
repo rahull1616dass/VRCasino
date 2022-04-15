@@ -85,6 +85,11 @@ public class UIManager : MonoBehaviour
         Debug.Log("Caalling");
         OnDealButtonEvent();
     }
+    public void DealButton()
+    {
+        Debug.Log("Caalling");
+        OnDealButtonEvent();
+    }
 
     public void NewGameButton(InputAction.CallbackContext context)
     {
@@ -96,5 +101,17 @@ public class UIManager : MonoBehaviour
     {
         Debug.Log("Hit");
         OnHitButtonEvent();
+    }
+
+    public void HitGameButton()
+    {
+        Debug.Log("Hit");
+        OnHitButtonEvent();
+    }
+
+    public void StandButton()
+    {
+        Debug.Log("Stand");
+        OnStandButtonEvent();
     }
 }

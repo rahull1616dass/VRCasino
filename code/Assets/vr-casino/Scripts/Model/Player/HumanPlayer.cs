@@ -8,5 +8,6 @@ public class HumanPlayer : Player
     public void LockBettingValue()
     {
         CurrentBet = bettingHole.m_ChipValues;
+        bettingHole.DestroyAllObj();
     }
 }
