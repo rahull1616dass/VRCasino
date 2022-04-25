@@ -42,4 +42,9 @@ public class Chip : MonoBehaviour
         Debug.Log("Called");
         InitialState = false;
     }
+
+    public void OnAnimationFinished()
+    {
+        gameObject.SetActive(false);
+    }
  }

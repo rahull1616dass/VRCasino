@@ -35,6 +35,9 @@ public class GameManager : MonoBehaviour
     public delegate void GameActionEvent(GameAction actions);
     public event GameActionEvent OnGameActionChanged;
 
+    [SerializeField]
+    private BettingHole bettingHole;
+
     public GameState CurrentState {
         get {
             return _currentState;
@@ -214,11 +217,12 @@ public class GameManager : MonoBehaviour
         if (CurrentState == GameState.HumanWon) {
             _human.GetComponent<ChipHandler>().GenerateChipsForPlayer(_human.CurrentBet * 2);
             _human.Score++;
-
+            bettingHole.DoAnimation("WinAnimation");
             Debug.Log("HumanWon");
         }
         else if (CurrentState == GameState.ComputerWon) {
             _computer.Score++;
+            bettingHole.DoAnimation("LoseAnimation");
             Debug.Log("ComputerWon");
         }
 

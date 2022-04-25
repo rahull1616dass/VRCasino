@@ -2999,6 +2999,7 @@ MonoBehaviour:
   _dealer: {fileID: 1616848032}
   _human: {fileID: 951442632}
   _computer: {fileID: 931100493}
+  bettingHole: {fileID: 162793377}
 --- !u!1 &1755435083
 GameObject:
   m_ObjectHideFlags: 0
@@ -4076,6 +4077,7 @@ GameObject:
   - component: {fileID: 3474828647217031102}
   - component: {fileID: 3474828647217031103}
   - component: {fileID: 3474828647217031104}
+  - component: {fileID: 3474828647217031105}
   m_Layer: 7
   m_Name: CasinoChip_Black
   m_TagString: Untagged
@@ -4243,6 +4245,25 @@ MonoBehaviour:
       values: 000001000000
     previewEnabled: 1
   scale: 1
+--- !u!95 &3474828647217031105
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3474828647217031098}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9822fa16283005a45a6467deeae45366, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!4 &3737041623970022044
 Transform:
   m_ObjectHideFlags: 0

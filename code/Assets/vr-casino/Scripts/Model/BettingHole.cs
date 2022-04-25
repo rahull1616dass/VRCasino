@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Valve.VR.InteractionSystem;
 
 public class BettingHole : MonoBehaviour
 {
@@ -29,6 +30,29 @@ public class BettingHole : MonoBehaviour
     {
         foreach (var item in allCoins)
         {
+            item.GetComponent<Interactable>().enabled = false;
+        }
+        
+    }
+
+    public void DoAnimation(string AnimationName)
+    {
+        StartCoroutine(DoAnimationOneByOne(AnimationName));
+    }
+
+    IEnumerator DoAnimationOneByOne(string AnimationName)
+    {
+        foreach (var item in allCoins)
+        {
+            Debug.Log(item.name+ "   " +AnimationName);
+            item.GetComponent<Animator>().enabled = true;
+            item.GetComponent<Animator>().Play(AnimationName, 0, -1);
+            yield return new WaitForSeconds(0.1f);
+        }
+
+        foreach (var item in allCoins)
+        {
+            yield return new WaitForSeconds(0.8f);
             Destroy(item);
         }
         allCoins.Clear();
