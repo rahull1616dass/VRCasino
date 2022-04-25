@@ -125,4 +125,9 @@ public class UIManager : MonoBehaviour
         Debug.Log("Stand");
         OnStandButtonEvent();
     }
+
+    public void ButtonTest()
+    {
+        Debug.Log("ButtonClicked");
+    }
 }
