@@ -7,6 +7,7 @@ public class BettingHole : MonoBehaviour
 {
     public int m_ChipValues;
     private List<GameObject> allCoins = new List<GameObject>();
+    [SerializeField] private UIManager m_UiManager;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -14,6 +15,7 @@ public class BettingHole : MonoBehaviour
             return;
         other.gameObject.GetComponent<Chip>().InsideTheHole = true;
         m_ChipValues += (int)other.gameObject.GetComponent<Chip>()._chipValue;
+        m_UiManager.OnBetUpdate(m_ChipValues);
         allCoins.Add(other.gameObject);
     }
 
@@ -23,16 +25,8 @@ public class BettingHole : MonoBehaviour
             return;
         other.gameObject.GetComponent<Chip>().InsideTheHole = false;
         m_ChipValues -= (int)other.gameObject.GetComponent<Chip>()._chipValue;
+        m_UiManager.OnBetUpdate(m_ChipValues);
         allCoins.Remove(other.gameObject);
-    }
-
-    public void DestroyAllObj()
-    {
-        foreach (var item in allCoins)
-        {
-            item.GetComponent<Interactable>().enabled = false;
-        }
-        
     }
 
     public void DoAnimation(string AnimationName)
@@ -53,6 +47,16 @@ public class BettingHole : MonoBehaviour
         foreach (var item in allCoins)
         {
             yield return new WaitForSeconds(0.8f);
+            allCoins.Remove(item);
+            Destroy(item);
+        }
+        allCoins.Clear();
+    }
+
+    public void DestroyAllTheCoins()
+    {
+        foreach (var item in allCoins)
+        {
             Destroy(item);
         }
         allCoins.Clear();

@@ -2,6 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Valve.VR;
+
+public enum ETypeOfAction
+{
+    None = -1,
+    HitOrDeal,
+    Stand
+}
 
 public class HandGestures : MonoBehaviour
 {
@@ -9,13 +17,24 @@ public class HandGestures : MonoBehaviour
     [SerializeField] UIManager uiManager;
     [SerializeField] GameManager gameManager;
     bool enableTheCollision = true;
+
+
+    public SteamVR_Input_Sources m_RightTargetSource;
+    public SteamVR_Action_Boolean m_RightGrabAction, m_RightPinchAction;
+
+    
+
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "HandCollider"&&enableTheCollision)
+        Debug.Log("Colliding");
+        Debug.Log("GrabAction" + m_RightGrabAction.GetState(m_RightTargetSource));
+        Debug.Log("PinchAction" + m_RightGrabAction.GetState(m_RightTargetSource));
+        if (collision.gameObject.tag == "HandCollider"&&enableTheCollision && (m_RightGrabAction.GetState(m_RightTargetSource)|| m_RightPinchAction.GetState(m_RightTargetSource)))
         {
+            Debug.Log("ConditionFulfiled");
             enableTheCollision = false;
-            Invoke("EnableCollision", 0.3f);
-            StartCoroutine(DoHandGesture());
+            Invoke("EnableCollision", 0.1f);
+            StartCoroutine(DoHandGesture(m_RightGrabAction.GetState(m_RightTargetSource) ? ETypeOfAction.HitOrDeal : m_RightPinchAction.GetState(m_RightTargetSource) ? ETypeOfAction.Stand : ETypeOfAction.None));
         }
 
     }
@@ -25,14 +44,14 @@ public class HandGestures : MonoBehaviour
         enableTheCollision = true;
     }
 
-    private IEnumerator DoHandGesture()
+    private IEnumerator DoHandGesture(ETypeOfAction eTypeOfAction)
     {
         collisionCount++;
         Debug.Log("calling" + collisionCount);
         yield return new WaitForSeconds(2f);
-        if (collisionCount == 2)
+        if (eTypeOfAction == ETypeOfAction.HitOrDeal)
             HitOrDeal();
-        else if (collisionCount == 3)
+        else if (eTypeOfAction == ETypeOfAction.Stand)
             Stand();
         else
             collisionCount = 0;

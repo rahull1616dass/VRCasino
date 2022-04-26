@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 using Valve.VR.InteractionSystem;
+using Valve.VR.InteractionSystem.Sample;
 
 
 public class GameManager : MonoBehaviour
@@ -18,8 +19,8 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private UIManager _uiManager;
 
-    [SerializeField]
-    private UIManager_VR _uiManagerVR;
+    //[SerializeField]
+    //private UIManager_VR _uiManagerVR;
     [SerializeField]
     private Dealer _dealer;
 
@@ -28,6 +29,10 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     private ComputerPlayer _computer;
+
+
+    [SerializeField]
+    private Transform m_CoinParant;
 
     public delegate void GameStateEvent(GameState state);
     public event GameStateEvent OnGameStateChanged;
@@ -80,11 +85,10 @@ public class GameManager : MonoBehaviour
 
     private void Subscriptions()
     {
-        _uiManager.OnDealButtonEvent += OnButtonEvent;
-        _uiManager.OnHitButtonEvent += OnButtonEvent;
-        _uiManager.OnStandButtonEvent += OnButtonEvent;
-        _uiManagerVR.OnNewGameButtonEvent += OnButtonEvent;
-        _uiManagerVR.OnExitButtonEvent += OnButtonEvent;
+        _uiManager.OnDealButtonEvent += OnDisableChipEvent;
+        _uiManager.OnHitButtonEvent += OnDisableChipEvent;
+        _uiManager.OnStandButtonEvent += OnDisableChipEvent;
+        _uiManager.OnNewGameButtonEvent += OnEnableChipEvent;
 
         _uiManager.OnDealButtonEvent += OnCardEvent;
         _uiManager.OnHitButtonEvent += OnCardEvent;
@@ -92,16 +96,29 @@ public class GameManager : MonoBehaviour
         _uiManager.OnDealButtonEvent += OnDealEvent;
         _uiManager.OnHitButtonEvent += OnHitEvent;
         _uiManager.OnStandButtonEvent += OnStandEvent;
-        _uiManagerVR.OnNewGameButtonEvent += OnNewGameEvent;
-        _uiManagerVR.OnExitButtonEvent += OnExitEvent;
+        _uiManager.OnNewGameButtonEvent += OnNewGameEvent;
+        _uiManager.OnExitButtonEvent += OnExitEvent;
 
         OnGameActionChanged += _uiManager.OnUpdateGameplayButtons;
 
     }
 
-    private void OnButtonEvent()
+    private void OnDisableChipEvent()
     {
-        //_audioManager.PlayButtonClip();
+        for (int i = 0; i < m_CoinParant.childCount; i++)
+        {
+            Destroy(m_CoinParant.GetChild(i).GetComponent<InteractableExample>());
+            Destroy(m_CoinParant.GetChild(i).GetComponent<Interactable>());
+        }
+    }
+
+    private void OnEnableChipEvent()
+    {
+        for (int i = 0; i < m_CoinParant.childCount; i++)
+        {
+            m_CoinParant.GetChild(i).gameObject.AddComponent<Interactable>();
+            m_CoinParant.GetChild(i).gameObject.AddComponent<InteractableExample>();
+        }
     }
 
     private void OnCardEvent()
@@ -214,6 +231,8 @@ public class GameManager : MonoBehaviour
     {
         _computer.Hand.Show();
 
+        _uiManager.OnBetUpdate(0);
+        bettingHole.m_ChipValues = 0;
         if (CurrentState == GameState.HumanWon) {
             _human.GetComponent<ChipHandler>().GenerateChipsForPlayer(_human.CurrentBet * 2);
             _human.Score++;
@@ -225,9 +244,13 @@ public class GameManager : MonoBehaviour
             bettingHole.DoAnimation("LoseAnimation");
             Debug.Log("ComputerWon");
         }
+        else if( CurrentState == GameState.Draw)
+        {
+            bettingHole.DestroyAllTheCoins();
+            _human.GetComponent<ChipHandler>().GenerateChipsForPlayer(_human.CurrentBet);
+        }
 
         CurrentAction = GameAction.NewGame;
-
-        _uiManagerVR.UpdateScore(_human.Score, _computer.Score);
+        _uiManager.UpdateHistoryAndResult(CurrentState, _human.CurrentBet);
     }
 }

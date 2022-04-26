@@ -7,9 +7,9 @@ using Valve.VR;
 
 public class VRInputModule : BaseInputModule
 {
-    public Camera m_Camera;
-    public SteamVR_Input_Sources m_TargetSource;
-    public SteamVR_Action_Boolean m_ClickAction;
+    public Camera m_RightCamera;
+    public SteamVR_Input_Sources m_RightTargetSource;
+    public SteamVR_Action_Boolean m_RightClickAction;
 
     private GameObject m_CurrentObject = null;
     private PointerEventData m_Data = null;
@@ -22,7 +22,7 @@ public class VRInputModule : BaseInputModule
     public override void Process()
     {
         m_Data.Reset();
-        m_Data.position = new Vector2(m_Camera.pixelWidth / 2, m_Camera.pixelHeight / 2);
+        m_Data.position = new Vector2(m_RightCamera.pixelWidth / 2, m_RightCamera.pixelHeight / 2);//m_RightCamera.WorldToScreenPoint(m_RightCamera.transform.position);
 
         eventSystem.RaycastAll(m_Data, m_RaycastResultCache);
         m_Data.pointerCurrentRaycast = FindFirstRaycast(m_RaycastResultCache);
@@ -33,11 +33,11 @@ public class VRInputModule : BaseInputModule
         HandlePointerExitAndEnter(m_Data, m_CurrentObject);
 
 
-        Debug.Log(m_ClickAction.GetStateDown(m_TargetSource));
-        if (m_ClickAction.GetStateDown(m_TargetSource))
+        Debug.Log(m_RightClickAction.GetState(m_RightTargetSource));
+        if (m_RightClickAction.GetStateDown(m_RightTargetSource))
             ProcessPress(m_Data);
 
-        if (m_ClickAction.GetStateUp(m_TargetSource))
+        if (m_RightClickAction.GetStateUp(m_RightTargetSource))
             ProcessRelease(m_Data);
     }
 
@@ -52,7 +52,7 @@ public class VRInputModule : BaseInputModule
 
         GameObject newPointerPress = ExecuteEvents.ExecuteHierarchy(m_CurrentObject, data, ExecuteEvents.pointerDownHandler);
 
-        Debug.Log(newPointerPress.name);
+        //Debug.Log(newPointerPress.name);
 
         if (newPointerPress == null)
             newPointerPress = ExecuteEvents.GetEventHandler<IPointerClickHandler>(m_CurrentObject);
