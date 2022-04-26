@@ -22,7 +22,8 @@ public class ScoreHistoryData
 public class UIManager : MonoBehaviour
 {
     private Image _audioImage;
-    private bool _isAudioDisabled;
+    [HideInInspector]
+    public bool _isAudioEnabled;
     //private Sprite _audioOnSprite;
 
     //[SerializeField]
@@ -40,7 +41,7 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private Button _audioButton;
     [SerializeField]
-    private AudioSource gameAudio;
+    private AudioSource gameAudio, gameAudioOfBG;
     [SerializeField]
     private InputActionReference _debugButtonDeal, _debugButtonNewGame, _debugButtonHit;
 
@@ -48,11 +49,16 @@ public class UIManager : MonoBehaviour
     private int m_CurrentChipValueOnBettingHole;
 
     [SerializeField]
+    private Image PanelImage;
+    [SerializeField]
     private TextMeshProUGUI m_MessageBoard, HistoryText, m_CurrentBet;
     [SerializeField]
     private GameObject m_PlayerObj;
+    [SerializeField] private List<AudioClip> audioClips;
+    [SerializeField] private AudioClip buttonClip;
     [TextArea(15, 20)]
     public string InfoText;
+    
     
     /*[SerializeField]
     private Sprite _audioOffSprite;*/
@@ -81,8 +87,7 @@ public class UIManager : MonoBehaviour
         _debugButtonNewGame.action.performed += NewGameButton;
         _debugButtonHit.action.performed += HitGameButton;
 
-        _isAudioDisabled = false;
-        gameAudio.Play();
+        _isAudioEnabled = false;
         //_audioOnSprite = _audioImage.sprite;
 
         //_scoreText =  gameObject.GetComponent<TextMeshProUGUI>();
@@ -107,17 +112,18 @@ public class UIManager : MonoBehaviour
     {
         //bool _isAudioDisabled = OnAudioButtonEvent();
 
-        if (_isAudioDisabled)
+        if (_isAudioEnabled)
         {
-            gameAudio.Play();
-            _isAudioDisabled = false;
+            gameAudioOfBG.Play();
+            _isAudioEnabled = false;
         }
         else
         {
-            gameAudio.Pause();
-            _isAudioDisabled = true;
+            gameAudioOfBG.Pause();
+            _isAudioEnabled = true;
             //_audioImage.sprite = _audioOnSprite;
         }
+        ButtonSound();
     }
 
     public void DealButton(InputAction.CallbackContext context)
@@ -180,7 +186,7 @@ public class UIManager : MonoBehaviour
         string TextToShow = "";
         foreach(var data in m_lastThreeHistory)
         {
-            TextToShow = TextToShow + "You " + (data.EGameState == GameState.ComputerWon ? "Lose " : data.EGameState == GameState.HumanWon ? "Won " : "Draw ") + "By the coins worth of " + CurrentBet + "€\n\n";
+            TextToShow = TextToShow + "You " + (data.EGameState == GameState.ComputerWon ? "Lose " : data.EGameState == GameState.HumanWon ? "Won " : "Draw ") + "By the chips worth of " + data.m_ChipCount + "€\n\n";
         }
         HistoryText.text = TextToShow;
     }
@@ -194,13 +200,17 @@ public class UIManager : MonoBehaviour
     public void OnClickInfoClose(GameObject button) 
     {
         button.SetActive(false);
+        PanelImage.enabled = false;
         StartCoroutine(ClearMessageBoard(0f));
+        ButtonSound();
     }
 
     public void OnClickInfo(GameObject button)
     {
         m_MessageBoard.text = InfoText;
         button.SetActive(true);
+        PanelImage.enabled = true;
+        ButtonSound();
     }
     public void OnBetUpdate(int Value)
     {
@@ -211,5 +221,17 @@ public class UIManager : MonoBehaviour
     {
         yield return new WaitForSeconds(Time);
         m_MessageBoard.text = "";
+    }
+
+    public void CardSound()
+    {
+        if (_isAudioEnabled)
+            gameAudio.PlayOneShot(audioClips[UnityEngine.Random.Range(0, audioClips.Count)]);
+    }
+
+    public void ButtonSound()
+    {
+        if (_isAudioEnabled)
+            gameAudio.PlayOneShot(buttonClip);
     }
 }

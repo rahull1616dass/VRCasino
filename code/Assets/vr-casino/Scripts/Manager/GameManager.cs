@@ -43,6 +43,10 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private BettingHole bettingHole;
 
+
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] AudioClip youWinClip, youLoseClip, youDrawClip;
+
     public GameState CurrentState {
         get {
             return _currentState;
@@ -85,6 +89,11 @@ public class GameManager : MonoBehaviour
 
     private void Subscriptions()
     {
+        _uiManager.OnDealButtonEvent += PlayCardSound;
+        _uiManager.OnHitButtonEvent += PlayCardSound;
+        _uiManager.OnStandButtonEvent += PlayCardSound;
+        _uiManager.OnNewGameButtonEvent += PlayButtonSound;
+
         _uiManager.OnDealButtonEvent += OnDisableChipEvent;
         _uiManager.OnHitButtonEvent += OnDisableChipEvent;
         _uiManager.OnStandButtonEvent += OnDisableChipEvent;
@@ -101,6 +110,14 @@ public class GameManager : MonoBehaviour
 
         OnGameActionChanged += _uiManager.OnUpdateGameplayButtons;
 
+    }
+    private void PlayButtonSound()
+    {
+        _uiManager.ButtonSound();
+    }
+    private void PlayCardSound()
+    {
+        _uiManager.CardSound();
     }
 
     private void OnDisableChipEvent()
@@ -236,18 +253,24 @@ public class GameManager : MonoBehaviour
         if (CurrentState == GameState.HumanWon) {
             _human.GetComponent<ChipHandler>().GenerateChipsForPlayer(_human.CurrentBet * 2);
             _human.Score++;
-            bettingHole.DoAnimation("WinAnimation");
+            bettingHole.DoAnimation("WinAnimation"); 
+            if (_uiManager._isAudioEnabled)
+                audioSource.PlayOneShot(youWinClip);
             Debug.Log("HumanWon");
         }
         else if (CurrentState == GameState.ComputerWon) {
             _computer.Score++;
             bettingHole.DoAnimation("LoseAnimation");
+            if (_uiManager._isAudioEnabled)
+                audioSource.PlayOneShot(youLoseClip);
             Debug.Log("ComputerWon");
         }
         else if( CurrentState == GameState.Draw)
         {
             bettingHole.DestroyAllTheCoins();
             _human.GetComponent<ChipHandler>().GenerateChipsForPlayer(_human.CurrentBet);
+            if (_uiManager._isAudioEnabled)
+                audioSource.PlayOneShot(youDrawClip);
         }
 
         CurrentAction = GameAction.NewGame;

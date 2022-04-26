@@ -16,6 +16,8 @@ public class HandGestures : MonoBehaviour
     int collisionCount;
     [SerializeField] UIManager uiManager;
     [SerializeField] GameManager gameManager;
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] AudioClip audioClip;
     bool enableTheCollision = true;
 
 
@@ -47,6 +49,7 @@ public class HandGestures : MonoBehaviour
     private IEnumerator DoHandGesture(ETypeOfAction eTypeOfAction)
     {
         collisionCount++;
+        audioSource.PlayOneShot(audioClip);
         Debug.Log("calling" + collisionCount);
         yield return new WaitForSeconds(2f);
         if (eTypeOfAction == ETypeOfAction.HitOrDeal)
