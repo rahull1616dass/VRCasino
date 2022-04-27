@@ -36,20 +36,23 @@ public class BettingHole : MonoBehaviour
 
     IEnumerator DoAnimationOneByOne(string AnimationName)
     {
-        foreach (var item in allCoins)
-        {
-            Debug.Log(item.name+ "   " +AnimationName);
-            item.GetComponent<Animator>().enabled = true;
-            item.GetComponent<Animator>().Play(AnimationName, 0, -1);
-            yield return new WaitForSeconds(0.1f);
-        }
+        lock (allCoins)
+            for (int i = 0; i < allCoins.Count; i++)
+            {
 
-        foreach (var item in allCoins)
-        {
-            yield return new WaitForSeconds(0.8f);
-            allCoins.Remove(item);
-            Destroy(item);
-        }
+                Debug.Log(allCoins[i].name + "   " + AnimationName);
+                allCoins[i].GetComponent<Animator>().enabled = true;
+                allCoins[i].GetComponent<Animator>().Play(AnimationName, 0, -1);
+                yield return new WaitForSeconds(0.1f);
+            }
+
+        lock (allCoins)
+            for (int i = 0; i < allCoins.Count; i++)
+            {
+                yield return new WaitForSeconds(0.8f);
+                allCoins.Remove(allCoins[i]);
+                //Destroy(allCoins[i]);
+            }
         allCoins.Clear();
     }
 
