@@ -37,6 +37,8 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private Button _newGameButton;
     [SerializeField]
+    private Button _closeButton;
+    [SerializeField]
     private Button _exitButton;
     [SerializeField]
     private Button _audioButton;
@@ -51,7 +53,7 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private Image PanelImage;
     [SerializeField]
-    private TextMeshProUGUI m_MessageBoard, HistoryText, m_CurrentBet;
+    private TextMeshProUGUI m_MessageBoard, HistoryText, m_CurrentBet, m_GameStateText;
     [SerializeField]
     private GameObject m_PlayerObj;
     [SerializeField] private List<AudioClip> audioClips;
@@ -75,7 +77,7 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
-        PanelImage.enabled = false;
+        OnClickInfo(_closeButton);
         //_dealButton.onClick.AddListener(() => OnDealButtonEvent());
         //_hitButton.onClick.AddListener(() => OnHitButtonEvent());
         //_standButton.onClick.AddListener(() => OnStandButtonEvent());
@@ -194,7 +196,7 @@ public class UIManager : MonoBehaviour
                 }
 
         }
-        m_MessageBoard.text = text;
+        m_GameStateText.text = text;
         StartCoroutine(ClearMessageBoard(5f));
     }
 
@@ -242,6 +244,7 @@ public class UIManager : MonoBehaviour
     {
         yield return new WaitForSeconds(Time);
         m_MessageBoard.text = "";
+        m_GameStateText.text = "";
     }
 
     public void CardSound()
