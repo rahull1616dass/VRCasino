@@ -184,9 +184,9 @@ public class UIManager : MonoBehaviour
             m_lastThreeHistory.RemoveAt(m_lastThreeHistory.Count - 1);
         m_lastThreeHistory.Add(new ScoreHistoryData(gameState, CurrentBet));
         string TextToShow = "";
-        foreach(var data in m_lastThreeHistory)
+        for(int i=0; i < m_lastThreeHistory.Count; i++)  
         {
-            TextToShow = TextToShow + "You " + (data.EGameState == GameState.ComputerWon ? "Lose " : data.EGameState == GameState.HumanWon ? "Won " : "Draw ") + "By the chips worth of " + data.m_ChipCount + "€\n\n";
+            TextToShow = i + ") " + TextToShow + "You " + (m_lastThreeHistory[i].EGameState == GameState.ComputerWon ? "Lost " : m_lastThreeHistory[i].EGameState == GameState.HumanWon ? "Won " : "Draw ") + ":" + m_lastThreeHistory[i].m_ChipCount + "€\n\n";
         }
         HistoryText.text = TextToShow;
     }
