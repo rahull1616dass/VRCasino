@@ -37,7 +37,7 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private Button _newGameButton;
     [SerializeField]
-    private Button _closeButton;
+    private GameObject _closeButton;
     [SerializeField]
     private Button _exitButton;
     [SerializeField]
@@ -176,6 +176,7 @@ public class UIManager : MonoBehaviour
 
     private void ShowResult(GameState gameState)
     {
+        OnClickInfoClose(_closeButton);
         String text = "";
         switch (gameState)
         {
@@ -197,7 +198,7 @@ public class UIManager : MonoBehaviour
 
         }
         m_GameStateText.text = text;
-        StartCoroutine(ClearMessageBoard(5f));
+        StartCoroutine(ClearGameStateText(5f));
     }
 
     public void UpdateHistoryAndResult(GameState gameState, int CurrentBet)
@@ -238,12 +239,17 @@ public class UIManager : MonoBehaviour
     public void OnBetUpdate(int Value)
     {
         m_CurrentChipValueOnBettingHole = Value;
-        m_CurrentBet.text = "Current Bet Value  " + Value+"€";
+        m_CurrentBet.text = "Current Bet: " + Value+"€";
     }
     private IEnumerator ClearMessageBoard(float Time)
     {
         yield return new WaitForSeconds(Time);
         m_MessageBoard.text = "";
+    }
+
+    private IEnumerator ClearGameStateText(float Time)
+    {
+        yield return new WaitForSeconds(Time);
         m_GameStateText.text = "";
     }
 
