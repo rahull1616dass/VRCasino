@@ -75,6 +75,7 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
+        PanelImage.enabled = false;
         //_dealButton.onClick.AddListener(() => OnDealButtonEvent());
         //_hitButton.onClick.AddListener(() => OnHitButtonEvent());
         //_standButton.onClick.AddListener(() => OnStandButtonEvent());
@@ -173,7 +174,27 @@ public class UIManager : MonoBehaviour
 
     private void ShowResult(GameState gameState)
     {
-        m_MessageBoard.text = gameState.ToString();
+        String text = "";
+        switch (gameState)
+        {
+            case GameState.ComputerWon:
+                {
+                    text = "Dealer won!";
+                    break;
+                }
+            case GameState.HumanWon:
+                {
+                    text = "You won!";
+                    break;
+                }
+            case GameState.Draw:
+                {
+                    text = "The game was a draw!";
+                    break;
+                }
+
+        }
+        m_MessageBoard.text = text;
         StartCoroutine(ClearMessageBoard(5f));
     }
 
@@ -183,10 +204,10 @@ public class UIManager : MonoBehaviour
         if (m_lastThreeHistory.Count > 3)
             m_lastThreeHistory.RemoveAt(m_lastThreeHistory.Count - 1);
         m_lastThreeHistory.Add(new ScoreHistoryData(gameState, CurrentBet));
-        string TextToShow = "";
+        string TextToShow = "Round History\n\n";
         for(int i=0; i < m_lastThreeHistory.Count; i++)  
         {
-            TextToShow = i + ") " + TextToShow + "You " + (m_lastThreeHistory[i].EGameState == GameState.ComputerWon ? "Lost " : m_lastThreeHistory[i].EGameState == GameState.HumanWon ? "Won " : "Draw ") + ":" + m_lastThreeHistory[i].m_ChipCount + "€\n\n";
+            TextToShow =  TextToShow + "You " + (m_lastThreeHistory[i].EGameState == GameState.ComputerWon ? "Lost " : m_lastThreeHistory[i].EGameState == GameState.HumanWon ? "Won " : "Draw ") + ":" + m_lastThreeHistory[i].m_ChipCount + "€\n\n";
         }
         HistoryText.text = TextToShow;
     }
