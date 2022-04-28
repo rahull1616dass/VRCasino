@@ -11,9 +11,11 @@
 
 ### Abstract
 
-`Insert your project description here, and keep it up-to-date.`
+This document is a concept paper where we explain
+our project for the XtAI Lab 1 course. We are to create a VR
+Casino with a table-top Blackjack game, where the user can
+interact using their VR controllers.
 
-`--- 8< --- READ, THEN REPLACE WITH CUSTOM CONTENT BELOW HERE --- 8< ---`
 
 ## Repository Usage Guides
 
